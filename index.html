@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Age of Dinosaurs</title>
+    <style>
+        /* CSS Styling */
+        :root {
+            --bg-color: #fdfbf7;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --primary: #27ae60; /* Dinosaur Green */
+            --accent: #e67e22;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1d;
+            --text-color: #d1d8e0;
+            --card-bg: #2d3436;
+            --primary: #55efc4;
+            --accent: #fdcb6e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 4px solid var(--primary);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Image Styling */
+        .dino-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid var(--primary);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0.8;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        button.theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: var(--primary);
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        button.theme-toggle:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode 🌙</button>
+
+    <header>
+        <h1>The Mesozoic Era</h1>
+        <p>A Journey Through the History of Dinosaurs</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="section">
+            <h2>The Dawn of the Giants</h2>
+            <p>Dinosaurs roamed the Earth during the Mesozoic Era, which began about 252 million years ago and ended 66 million years ago. This era is divided into three major periods: the Triassic, Jurassic, and Cretaceous. During this immense span of time, dinosaurs evolved into a spectacular array of shapes and sizes, dominating the terrestrial ecosystems.</p>
+        </div>
+
+        <div class="section">
+            <h2>The Jurassic Period</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Stegosaurus_stenops_life_reconstruction.png/800px-Stegosaurus_stenops_life_reconstruction.png" alt="Stegosaurus illustration" class="dino-image">
+            <div class="image-caption">Stegosaurus, heavily armored and featuring a spiked tail.</div>
+            
+            <p>The Jurassic Period (201 to 145 million years ago) saw the supercontinent Pangaea begin to split apart. This period is famous for massive sauropods like the Brachiosaurus and Diplodocus, which fed on towering conifers. Iconic armored dinosaurs like the Stegosaurus also emerged during this time, defending themselves against fierce predators like the Allosaurus.</p>
+        </div>
+
+        <div class="section">
+            <h2>The Cretaceous Period</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Tyrannosaurus_rex_holotype_profile.png/800px-Tyrannosaurus_rex_holotype_profile.png" alt="Tyrannosaurus Rex illustration" class="dino-image">
+            <div class="image-caption">Tyrannosaurus Rex, one of the largest meat-eating dinosaurs.</div>
+            
+            <p>Spanning from 145 to 66 million years ago, the Cretaceous Period was the final and longest segment of the Mesozoic Era. It witnessed the highest diversity of dinosaurs, including the iconic Triceratops and the fearsome Tyrannosaurus Rex. It was also during this period that the first flowering plants appeared, forever changing the Earth's landscape.</p>
+            <p>This magnificent era came to an abrupt end when a massive asteroid struck the Yucatán Peninsula, triggering a mass extinction event that wiped out all non-avian dinosaurs.</p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute("data-theme");
+            const btn = document.querySelector(".theme-toggle");
+            
+            if (currentTheme === "dark") {
+                document.documentElement.setAttribute("data-theme", "light");
+                btn.textContent = "Toggle Dark Mode 🌙";
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+                btn.textContent = "Toggle Light Mode ☀️";
+            }
+        }
+    </script>
+</body>
+</html>
