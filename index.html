@@ -7,19 +7,19 @@
     <style>
         /* CSS Styling */
         :root {
-            --bg-color: #fdfbf7;
             --text-color: #2c3e50;
-            --card-bg: #ffffff;
-            --primary: #27ae60; /* Dinosaur Green */
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --primary: #27ae60; 
             --accent: #e67e22;
+            --overlay-color: rgba(253, 251, 247, 0.85);
         }
 
         [data-theme="dark"] {
-            --bg-color: #1a1a1d;
             --text-color: #d1d8e0;
-            --card-bg: #2d3436;
+            --card-bg: rgba(45, 52, 54, 0.9);
             --primary: #55efc4;
             --accent: #fdcb6e;
+            --overlay-color: rgba(26, 26, 29, 0.88);
         }
 
         * {
@@ -31,9 +31,42 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.8;
+            overflow-x: hidden; /* Prevent scrollbars from animation */
+        }
+
+        /* Animated Background Setup */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background-image: url('https://scx2.b-cdn.net/gfx/news/hires/2026/baby-dinosaurs-a-commo.jpg');
+            background-size: cover;
+            background-position: center;
+            /* The animation property */
+            animation: slowZoom 20s infinite alternate ease-in-out;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: var(--overlay-color);
+            transition: background 0.3s;
+            backdrop-filter: blur(4px); /* Adds a slight blur to the background */
+        }
+
+        /* Keyframes for the background animation */
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
         header {
@@ -42,6 +75,7 @@
             background-color: var(--card-bg);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             border-bottom: 4px solid var(--primary);
+            position: relative;
         }
 
         h1 {
@@ -54,6 +88,7 @@
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 2rem;
+            position: relative;
         }
 
         .section {
@@ -61,7 +96,7 @@
             padding: 2.5rem;
             margin-bottom: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .section h2 {
@@ -86,15 +121,6 @@
             border: 2px solid var(--primary);
         }
 
-        .image-caption {
-            text-align: center;
-            font-size: 0.9rem;
-            font-style: italic;
-            opacity: 0.8;
-            margin-top: -1rem;
-            margin-bottom: 1.5rem;
-        }
-
         button.theme-toggle {
             position: fixed;
             top: 20px;
@@ -107,6 +133,7 @@
             cursor: pointer;
             font-weight: bold;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 100;
         }
 
         button.theme-toggle:hover {
@@ -116,6 +143,9 @@
     </style>
 </head>
 <body>
+
+    <div class="bg-animation"></div>
+    <div class="bg-overlay"></div>
 
     <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode 🌙</button>
 
@@ -133,18 +163,16 @@
 
         <div class="section">
             <h2>The Jurassic Period</h2>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Stegosaurus_stenops_life_reconstruction.png/800px-Stegosaurus_stenops_life_reconstruction.png" alt="Stegosaurus illustration" class="dino-image">
-            <div class="image-caption">Stegosaurus, heavily armored and featuring a spiked tail.</div>
+            <img src="https://i.natgeofe.com/n/b84387cb-28f5-4611-a221-65ae275ae2e3/1028.jpg" alt="Jurassic Dinosaur" class="dino-image">
             
-            <p>The Jurassic Period (201 to 145 million years ago) saw the supercontinent Pangaea begin to split apart. This period is famous for massive sauropods like the Brachiosaurus and Diplodocus, which fed on towering conifers. Iconic armored dinosaurs like the Stegosaurus also emerged during this time, defending themselves against fierce predators like the Allosaurus.</p>
+            <p>The Jurassic Period (201 to 145 million years ago) saw the supercontinent Pangaea begin to split apart. This period is famous for massive sauropods like the Brachiosaurus and Diplodocus, which fed on towering conifers. Iconic armored dinosaurs also emerged during this time, defending themselves against fierce predators.</p>
         </div>
 
         <div class="section">
             <h2>The Cretaceous Period</h2>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Tyrannosaurus_rex_holotype_profile.png/800px-Tyrannosaurus_rex_holotype_profile.png" alt="Tyrannosaurus Rex illustration" class="dino-image">
-            <div class="image-caption">Tyrannosaurus Rex, one of the largest meat-eating dinosaurs.</div>
+            <img src="https://sites.create-cdn.net/siteimages/28/7/7/287788/20/4/8/20481320/1200x1200.png?1681228470" alt="Cretaceous Dinosaur" class="dino-image">
             
-            <p>Spanning from 145 to 66 million years ago, the Cretaceous Period was the final and longest segment of the Mesozoic Era. It witnessed the highest diversity of dinosaurs, including the iconic Triceratops and the fearsome Tyrannosaurus Rex. It was also during this period that the first flowering plants appeared, forever changing the Earth's landscape.</p>
+            <p>Spanning from 145 to 66 million years ago, the Cretaceous Period was the final and longest segment of the Mesozoic Era. It witnessed the highest diversity of dinosaurs. It was also during this period that the first flowering plants appeared, forever changing the Earth's landscape.</p>
             <p>This magnificent era came to an abrupt end when a massive asteroid struck the Yucatán Peninsula, triggering a mass extinction event that wiped out all non-avian dinosaurs.</p>
         </div>
 
